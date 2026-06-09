@@ -58,12 +58,11 @@ async def main():
             raw_data = await client.read_gatt_char(CHARACTERISTIC_UUID)
             print(f"[Read] Donnée brute (Hex): {raw_data.hex().upper()}")
             raw_temp, ph_raw_mv, raw_orp, sync_mode_raw, bat_raw = parse_raw_frame(raw_data)
-            print(f"raw_temp : {raw_temp}\n
-                  ph_raw_mv : {ph_raw_mv}\n
-                  raw_orp : {raw_orp}\n
-                  sync_mode_raw : {sync_mode_raw}\n
-                  bat_raw : {bat_raw}\n
-                  ")
+            print(f"""raw_temp : {raw_temp}
+                  ph_raw_mv : {ph_raw_mv}
+                  raw_orp : {raw_orp}
+                  sync_mode_raw : {sync_mode_raw}
+                  bat_raw : {bat_raw}""")
         except Exception as e:
             print(f"La lecture directe a échoué (normal si non supporté) : {e}")
 
