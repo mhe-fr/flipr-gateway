@@ -1,0 +1,27 @@
+(.venv) matthieu@bmaxvalb:~/dev/flipr-gateway$ python3 test-flipr-ble.py
+Recherche de l'appareil FD:07:B5:E5:6B:A0...
+Appareil trouvé ! Connexion en cours à F3E56BA0...
+Connecté avec succès à F3E56BA0
+
+--- Exploration des Services et Caractéristiques ---
+[Service] 0000e302-0000-1000-8000-00805f9b34fb : Vendor specific
+  [Carac] 00000006-0000-1000-8000-00805f9b34fb | Propriétés: ['read', 'notify']
+[Service] 00001801-0000-1000-8000-00805f9b34fb : Generic Attribute Profile
+[Service] 0000fe59-0000-1000-8000-00805f9b34fb : Nordic Semiconductor ASA
+  [Carac] 8ec90003-f315-4f60-9fb8-838830daea50 | Propriétés: ['write', 'indicate']
+[Service] 0000180a-0000-1000-8000-00805f9b34fb : Device Information
+  [Carac] 00002a24-0000-1000-8000-00805f9b34fb | Propriétés: ['read']
+  [Carac] 00002a29-0000-1000-8000-00805f9b34fb | Propriétés: ['read']
+  [Carac] 00002a23-0000-1000-8000-00805f9b34fb | Propriétés: ['read']
+[Service] 0000180f-0000-1000-8000-00805f9b34fb : Battery Service
+  [Carac] 00002a19-0000-1000-8000-00805f9b34fb | Propriétés: ['read', 'notify']
+[Service] 0000f906-0000-1000-8000-00805f9b34fb : Vendor specific
+  [Carac] 000073b4-0000-1000-8000-00805f9b34fb | Propriétés: ['read', 'write']
+  [Carac] 0000549d-0000-1000-8000-00805f9b34fb | Propriétés: ['read', 'notify']
+  [Carac] 000007c1-0000-1000-8000-00805f9b34fb | Propriétés: ['read']
+  [Carac] 0000940d-0000-1000-8000-00805f9b34fb | Propriétés: ['read', 'write']
+-----------------------------------------------------
+
+Tentative de lecture de la caractéristique...
+[Read] Donnée brute (Hex): 7D01EA078A02000001F509C90D
+Déconnecté.

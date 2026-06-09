@@ -57,6 +57,13 @@ async def main():
             print(f"Tentative de lecture de la caractéristique...")
             raw_data = await client.read_gatt_char(CHARACTERISTIC_UUID)
             print(f"[Read] Donnée brute (Hex): {raw_data.hex().upper()}")
+            (raw_temp, ph_raw_mv, raw_orp, sync_mode_raw, bat_raw) = parse_raw_frame(raw_data)
+            print(f"raw_temp : {raw_temp}\n
+                  ph_raw_mv : {ph_raw_mv}\n
+                  raw_orp : {raw_orp}\n
+                  sync_mode_raw : {sync_mode_raw}\n
+                  bat_raw : {bat_raw}\n
+                  ")
         except Exception as e:
             print(f"La lecture directe a échoué (normal si non supporté) : {e}")
 
@@ -81,6 +88,24 @@ async def main():
 
     print("Déconnecté.")
 
+def parse_raw_frame(
+    data: bytes
+) -> tuple[float, float, float, str | None, int] | None:
+    if len(data) < 13:
+        print(f"Frame too short: {len(data)} bytes")
+        return None
+    try:
+        raw_temp = int.from_bytes(data[0:2], "little") * 0.06
+        ph_raw_mv = int.from_bytes(data[2:4], "little")
+        raw_orp = int.from_bytes(data[4:6], "little") / 2.0
+        sync_mode_raw = str(data[8])
+        bat_raw = int.from_bytes(data[11:13], "little")
+    except ValueError as e:
+        print(f"Frame parsing error: {e}")
+        return None
+
+
+    return raw_temp, ph_raw_mv, raw_orp, sync_mode_raw, bat_raw
 
 # Lancement du programme asynchrone
 if __name__ == "__main__":
